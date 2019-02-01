@@ -9,3 +9,5 @@ It contains two independent projects
 2. SpringBootMongoDbCRUD - Spring Boot & Spring REST and MongoDB
 
 you can view readme.txt of each project for more details.
+
+Note: ng_modules folder is not commit due to some technical issues. Please give a command to start download required libraries for Angular project once you import -    - npm install
