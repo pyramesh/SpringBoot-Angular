@@ -24,7 +24,10 @@ Package Stracture
 src/main/java
 ---------------
 com.ramesh.controller --> Controller
+
 com.ramesh.service --> Service Layer classes
+
 com.ramesh.repository --> Repository classes
+
 com.ramesh.model --> JPA Entity classes
 
