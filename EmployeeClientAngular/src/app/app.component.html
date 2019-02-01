@@ -1,0 +1,43 @@
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<table>
+<tr align="left">
+<td colspan="2" class="header" valign="left">
+  Header
+</td>
+</tr>
+
+<tr style="vertical-align:top;height: 500px;">
+
+					<td style="height: 4px; width: 200px;border:1px solid;">
+
+						<div class="panel-outer panel-primary">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<span class="glyphicon glyphicon-list"> Employee_Menu </span>
+								</h4>
+							</div>
+
+
+              <a routerLink="/login" routerLinkActive="active-link"  >Login </a>
+              <a routerLink="/home" routerLinkActive="active-link"  >Manage Employee</a>
+
+							</div>
+						</td>
+
+
+<td class="mainContent" align="center"> 
+<div>	
+  <router-outlet></router-outlet>	
+</div> 
+</td>
+</tr>
+
+<tr>
+<td colspan="2" class="footer">
+Footer
+</td>
+</tr>
+</table>
+ 

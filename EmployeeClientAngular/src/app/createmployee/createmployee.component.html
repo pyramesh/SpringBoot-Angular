@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Login Page</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Latest compiled and minified CSS -->
+<script type="text/javascript">
+
+</script>
+
+</head>
+
+<body>
+
+	<table style="background-color: white" class="formTable">
+		<tbody>
+			<tr>
+			<!-- center content area start here-->
+				<td style="width: 942px; border: 1px solid;" colspan="2">
+					<div class="panel-outer panel-primary"></div>
+					<div style="padding-left: 5px; padding-right: 10px">
+						<div>
+							<!-- <div ng-show="error" class="alert alert-danger">{{error}}</div> -->
+							<form [formGroup]="employeeForm" (ngSubmit)="onEmployeeFormSubmit()" class="form-horizontal">
+								<div class="panel-outer panel-primary">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<span class="glyphicon glyphicon-list"></span> Employee CRUD Operation
+										</h4>
+									</div>
+								</div>
+								<br />
+								
+<div class="panel-body">
+			<table width="80%" border="0" class="formTable" cellspacing="2" cellpadding="2">
+				<tr>
+					<td style="width: 80%; height: 1px">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table width="80%" border="0" class="formTable" cellspacing="2" cellpadding="2">
+							<tr>
+								<td width="80%">
+									<table width="80%" border="0" class="formTable" cellspacing="2" cellpadding="2">
+										<tr>
+											<td width="80%">
+									
+
+<table width="80%" border="0" class="formTable" cellspacing="2" cellpadding="2" align="center">
+	
+	<tr>
+		<td>
+			<fieldset>
+				<table width="80%" border="0" class="formTable" cellspacing="2" cellpadding="2">
+					<tr class="clsDetailTable_row">
+						
+						 <td>
+							<legend>&nbsp;Create/Update Employee</legend>
+						</td>
+					</tr>
+					<h4 *ngIf="employeeIdToUpdate; else create">
+   						
+   						<p class="text-warning" nowrap="nowrap">Update Employee for Id: {{employeeIdToUpdate}}</p>
+					</h4>
+					
+				</table>
+				<table width="80%" border="0" class="formTable"	cellspacing="2" cellpadding="2">
+					
+					<tr class="clsDetailTable_row">
+						<td class="labelText" nowrap="nowrap">
+							Employee Name <span class="mand">*</span> 
+						</td>
+						&nbsp;&nbsp;&nbsp;
+						<td class="labelText">
+						<input type="text" styleClass="form-control"  style="width:300px" maxlength="50" tabindex="1"
+					name="name" id="name" class="form-control" formControlName="name" required />
+				      <label *ngIf="employeeForm.get('name').invalid && processValidation" [ngClass] = "'error'"> Name is required. </label>
+					</td>
+					
+					</tr><br/>
+					
+				
+					<tr class="clsDetailTable_row">
+						<td class="labelText" nowrap="nowrap">
+							Employee Email <span class="mand">*</span> 
+						</td>
+						&nbsp;&nbsp;&nbsp;
+						<td class="labelText">
+						<input type="text" styleClass="form-control"  style="width:300px" maxlength="50" tabindex="2"
+					name="email" id="email" class="form-control" formControlName="email" required />
+				      <label *ngIf="employeeForm.get('email').invalid && processValidation" [ngClass] = "'error'"> Email is required. </label>
+					</td>
+					
+					</tr> <br/>			
+					
+					<tr class="clsDetailTable_row">
+						<td class="labelText" nowrap="nowrap">
+							Employee Department <span class="mand">*</span>
+						</td>
+						&nbsp;&nbsp;&nbsp;
+						<td class="labelText">
+						<input type="text" styleClass="form-control"  style="width:300px" maxlength="50" tabindex="3"
+					name="department" id="department" class="form-control" formControlName="department" required />
+				      <label *ngIf="employeeForm.get('department').invalid && processValidation" [ngClass] = "'error'"> Department is required. </label>
+					</td>
+					
+					</tr>
+					<br/>
+					</table>
+					
+					<div class="form-actions" align="center">
+			<table>
+			<tr>
+			<td> &nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td>
+			<button type="submit" *ngIf="!employeeIdToUpdate" class="btn btn-primary">Create</button>
+			<button type="submit" *ngIf="employeeIdToUpdate" class="btn btn-primary">Update</button>
+			<button type="submit" (click)="backToCreateEmployee()" *ngIf="employeeIdToUpdate" class="btn btn-primary"> Back</button>
+			</td>
+			</tr></table>
+		</div> 
+	
+
+
+<br/>
+ <div *ngIf="statusCode; else processing">
+   <div *ngIf="statusCode === 201" [ngClass] = "'success'">
+	    <p class="text-success">Employee added successfully.</p>
+   </div>   
+   <div *ngIf="statusCode === 409" [ngClass] = "'success'">
+       
+        <p class="text-success"> Employee already exists.</p>
+   </div>   	
+   <div *ngIf="statusCode === 200" [ngClass] = "'success'">
+        
+        <p class="text-success"> Employee updated successfully.</p>
+   </div>   	      
+   <div *ngIf="statusCode === 204" [ngClass] = "'success'">
+        
+        <p class="text-success"> Employee deleted successfully.</p>
+   </div>   	   
+   <div *ngIf="statusCode === 500" [ngClass] = "'error'">
+        
+        <p class="text-danger"> Internal Server Error.</p>
+   </div>   	
+ </div>
+ <ng-template #processing>
+	<img *ngIf="requestProcessing" src="assets/images/loading.gif">
+ </ng-template>
+
+				</fieldset>
+				</td>
+				</tr>
+				</table>
+				
+				</td>
+				</tr>
+				</table>
+				</td>
+				</tr>
+				</table>
+				</td>
+				</tr>
+				
+				
+				</table>
+<div class="row">
+					<div class="col-sm-6">
+						<legend>&nbsp;Employee Details</legend>
+					</div>
+          
+
+   </div>
+
+<div id="exportTbl">
+<div class="card">
+    <div class="card-body">
+		<div class="row">
+    	    <div class="col-md-12 mt-4">
+
+			<!--Table-->
+ <table class="table table-hover table-responsive table-fixed">
+                <thead class="mdb-color lighten-4">    <tr>
+      <th style="width: 25%;"> Employee ID</th>
+      <th style="width: 20%;"> Employee Name</th>
+      <th style="width: 20%;">Email</th>
+      <th>Department</th>
+      <th></th>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let employee of allEmployees | customfilter:term">
+  <th scope="row" nowrap="nowrap">{{employee.id}}</th>
+      <td>{{employee.name}}</td>
+      <td>{{employee.email}}</td>
+      <td>{{employee.department}}</td>
+	<td><button type="submit" (click)="loadEmployeeToEdit(employee.id)"  class="btn btn-success"> Edit</button></td>
+	<td><button type="submit" (click)="deleteEmployee(employee.id)"  class="btn btn-success"> Delete</button></td>
+      
+  </tr>
+  
+</tbody>
+</table>
+</div></div></div></div>
+</div>				
+				
+					
+					
+					
+				
+				</div>
+				
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+							</form>
+							<hr />
+							
+						</div>
+					</div>
+				</td>
+				</tr>
+		</tbody>
+	</table>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
